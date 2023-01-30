@@ -41,7 +41,7 @@ public class Constants {
         // TODO: UPDATE THIS TO OUR TRACK WIDTH, CODE WILL NOT WORK WITHOUT
         public static final double kTrackWidth = 0.381 * 2;
         // TODO: SET TO WHEEL DIAMATER IN METERS
-        public static final double kWheelDiamater = 0.1016;
+        public static final double wheelDiamater = 0.1016;
     }
 
     public final static Transform3d robotToCam = new Transform3d(new Translation3d(0.5, 0.0, 05),
