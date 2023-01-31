@@ -13,6 +13,7 @@ package frc.robot;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation3d;
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -33,7 +34,7 @@ public class Constants {
         public static final int kRightStickX = 3;
     }
 
-    public static final class   DriveConstants {
+    public static final class DriveConstants {
         public static final int kLeftMotor1Port = 0;
         public static final int kLeftMotor2Port = 1;
         public static final int kRightMotor1Port = 2;
@@ -41,7 +42,23 @@ public class Constants {
         // TODO: UPDATE THIS TO OUR TRACK WIDTH, CODE WILL NOT WORK WITHOUT
         public static final double kTrackWidth = 0.381 * 2;
         // TODO: SET TO WHEEL DIAMATER IN METERS
-        public static final double kWheelDiamater = 0.1016;
+        public static final double wheelDiamater = 0.1016;
+
+        public final static DifferentialDriveKinematics m_kinematics = new DifferentialDriveKinematics(
+                kTrackWidth);
+        public static final double ksVolts = 0;
+        public static final double kvVoltSecondsPerMeter = 0;
+        public static final double kaVoltSecondsSquaredPerMeter = 0;
+        public static final double kPDriveVel = 0;
+    }
+
+    public static final class AutoConstants {
+
+        public static final double kMaxSpeedMetersPerSecond = 0;
+        public static final double kMaxAccelerationMetersPerSecondSquared = 0;
+        public static final double kRamseteB = 0;
+        public static final double kRamseteZeta = 0;
+
     }
 
     public final static Transform3d robotToCam = new Transform3d(new Translation3d(0.5, 0.0, 05),
