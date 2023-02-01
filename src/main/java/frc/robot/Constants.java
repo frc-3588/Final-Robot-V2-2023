@@ -14,6 +14,7 @@ import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.trajectory.Trajectory;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -29,38 +30,46 @@ import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
  * constants are needed, to reduce verbosity.
  */
 public class Constants {
-    public static final class JoystickConstants {
-        public static final int kLeftStickY = 1;
-        public static final int kRightStickX = 3;
-    }
 
-    public static final class DriveConstants {
-        public static final int kLeftMotor1Port = 0;
-        public static final int kLeftMotor2Port = 1;
-        public static final int kRightMotor1Port = 2;
-        public static final int kRightMotor2Port = 3;
-        // TODO: UPDATE THIS TO OUR TRACK WIDTH, CODE WILL NOT WORK WITHOUT
-        public static final double kTrackWidth = 0.381 * 2;
-        // TODO: SET TO WHEEL DIAMATER IN METERS
-        public static final double wheelDiamater = 0.1016;
+  public static final class JoystickConstants {
 
-        public final static DifferentialDriveKinematics m_kinematics = new DifferentialDriveKinematics(
-                kTrackWidth);
-        public static final double ksVolts = 0;
-        public static final double kvVoltSecondsPerMeter = 0;
-        public static final double kaVoltSecondsSquaredPerMeter = 0;
-        public static final double kPDriveVel = 0;
-    }
+    public static final int kLeftStickY = 1;
+    public static final int kRightStickX = 3;
+  }
 
-    public static final class AutoConstants {
+  public static final class DriveConstants {
 
-        public static final double kMaxSpeedMetersPerSecond = 0;
-        public static final double kMaxAccelerationMetersPerSecondSquared = 0;
-        public static final double kRamseteB = 0;
-        public static final double kRamseteZeta = 0;
+    public static final int kLeftMotor1Port = 0;
+    public static final int kLeftMotor2Port = 1;
+    public static final int kRightMotor1Port = 2;
+    public static final int kRightMotor2Port = 3;
+    // TODO: UPDATE THIS TO OUR TRACK WIDTH, CODE WILL NOT WORK WITHOUT
+    public static final double kTrackWidth = 0.381 * 2;
+    // TODO: SET TO WHEEL DIAMATER IN METERS
+    public static final double wheelDiamater = 0.1016;
 
-    }
+    public static final DifferentialDriveKinematics m_kinematics = new DifferentialDriveKinematics(
+      kTrackWidth
+    );
+    public static final double ksVolts = 0;
+    public static final double kvVoltSecondsPerMeter = 0;
+    public static final double kaVoltSecondsSquaredPerMeter = 0;
+    public static final double kPDriveVel = 0;
+    public static double kWheelDiamater;
+  }
 
-    public final static Transform3d robotToCam = new Transform3d(new Translation3d(0.5, 0.0, 05),
-            new Rotation3d(0, 0, 0));
+  public static final class AutoConstants {
+    public static String trajectoryJSON = "paths/CrossBaseline.wpilib.json";
+    public static Trajectory trajectory = new Trajectory();
+
+    public static final double kMaxSpeedMetersPerSecond = 0;
+    public static final double kMaxAccelerationMetersPerSecondSquared = 0;
+    public static final double kRamseteB = 0;
+    public static final double kRamseteZeta = 0;
+  }
+
+  public static final Transform3d robotToCam = new Transform3d(
+    new Translation3d(0.5, 0.0, 05),
+    new Rotation3d(0, 0, 0)
+  );
 }
