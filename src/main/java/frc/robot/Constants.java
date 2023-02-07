@@ -15,6 +15,7 @@ import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.util.Units;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -69,7 +70,7 @@ public class Constants {
   }
 
   public static final Transform3d robotToCam = new Transform3d(
-    new Translation3d(0.5, 0.0, 05),
-    new Rotation3d(0, 0, 0)
+    new Translation3d(Units.inchesToMeters(16), 0.0, Units.inchesToMeters(4.625)),
+    new Rotation3d(0, 70, 0)
   );
 }
