@@ -5,18 +5,22 @@ import java.util.Optional;
 import org.photonvision.EstimatedRobotPose;
 import org.photonvision.PhotonCamera;
 import org.photonvision.PhotonPoseEstimator;
+import org.photonvision.PhotonUtils;
 import org.photonvision.PhotonPoseEstimator.PoseStrategy;
-import org.photonvision.targeting.PhotonTrackedTarget;
-
+import org.photonvision.targeting.PhotonPipelineResult;
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFields;
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.util.Units;
 import frc.robot.Constants;
 
 public class Vision {
     private final PhotonCamera camera;
     private AprilTagFieldLayout field;
     private PhotonPoseEstimator poseEstimator;
+
+    
 
     public Vision() {
         camera = new PhotonCamera("USB_Camera");
@@ -32,21 +36,14 @@ public class Vision {
     }
 
     // A help function to log found camera targets to the console
-    public void getCameraData() {
-        var result = camera.getLatestResult();
-
-        if (result.hasTargets()) {
-            PhotonTrackedTarget target = result.getBestTarget();
-
-            int targetId = target.getFiducialId();
-            double poseAmbiguity = target.getPoseAmbiguity();
-
-            System.out.println("Target ID: " + targetId + " Pose Ambiguity: " + poseAmbiguity);
-        }
+    public PhotonPipelineResult getCameraData() {
+        return camera.getLatestResult();
     }
 
     public Optional<EstimatedRobotPose> getEstimatedGlobalPose(Pose2d prevEstimatedRobotPose) {
         poseEstimator.setReferencePose(prevEstimatedRobotPose);
         return poseEstimator.update();
     }
+
+    
 }
