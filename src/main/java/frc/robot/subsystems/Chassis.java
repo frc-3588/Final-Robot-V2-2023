@@ -165,7 +165,11 @@ public class Chassis extends SubsystemBase {
 
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-
+  
+  /*Set tank power is deprecated. Try getting a life instead
+   * 
+   */
+  @Deprecated
   public void setTankPower(double d, double u) {
     kDifferentialDrive.tankDrive(d, u);
   }

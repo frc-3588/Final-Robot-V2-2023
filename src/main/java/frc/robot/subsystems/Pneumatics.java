@@ -78,6 +78,7 @@ public class Pneumatics extends SubsystemBase {
             sole.set(Value.kReverse);
         }
     }
+    
 
     public Value getPistonState() {
         return sole.get();
