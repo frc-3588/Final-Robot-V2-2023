@@ -31,13 +31,56 @@ import edu.wpi.first.math.trajectory.Trajectory;
  */
 public class Constants {
 
-  public static final class JoystickConstants {
+    public static final class DriveConstants {
+        public static final int kLeftMotor1Port = 0;
+        public static final int kLeftMotor2Port = 1;
+        public static final int kRightMotor1Port = 2;
+        public static final int kRightMotor2Port = 3;
+
+        // TODO: UPDATE THIS TO OUR TRACK WIDTH, CODE WILL NOT WORK WITHOUT
+        public static final double kTrackWidth = 0.381 * 2;
+        // TODO: SET TO WHEEL DIAMATER IN MzETERS
+        public static final double wheelDiamater = 0.1016;
 
     public static final int kLeftStickY = 1;
     public static final int kRightStickX = 3;
   }
 
-  public static final class DriveConstants {
+    public static final class ElevatorConstants {
+
+        public static final double topPIDReference = 12.0;
+        public static final double bottomPIDReference = 0.0; 
+        public static final double PIDTolerance = 0.01;
+
+        public static final double ascensionSpeed = 0.25;
+        public static final double descensionSpeed = -0.25;
+        public static final double stopSpeed = 0.0;
+
+        public static final double rightPIDTolerance = 0.01;
+        public static final double leftPIDTolerance = 0.01;
+
+        public static final double cubeTopHeight = 3.0; //feet, take into consideration apriltags
+        public static final double cubeMiddleHeight = 2.0;
+        
+        public static final double coneTopHeight = 4.0;
+        public static final double coneMiddleHeight = 3.0;
+
+        public static final double feederStationHeight = 3.0; //change according to game manuel 
+
+    }
+
+    public static final class ArmConstants{
+
+        //measure according to the robot, location of elevator and arm
+        public static final double middleSetPoint = 0.0;
+        public static final double topSetPoint = 0.0;
+        public static final double PIDTolerance= 0.01;
+
+        public static final double topPIDReference = 2.0;
+        public static final double middlePIDReference = 2.0;
+    }
+
+    public static final class AutoConstants {
 
     public static final int kLeftMotor1Port = 0;
     public static final int kLeftMotor2Port = 1;
@@ -56,9 +99,7 @@ public class Constants {
     public static final double kaVoltSecondsSquaredPerMeter = 0;
     public static final double kPDriveVel = 0;
     public static double kWheelDiamater;
-  }
 
-  public static final class AutoConstants {
     public static String trajectoryJSON = "paths/CrossBaseline.wpilib.json";
     public static Trajectory trajectory = new Trajectory();
 
