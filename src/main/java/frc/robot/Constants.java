@@ -31,6 +31,11 @@ import edu.wpi.first.math.trajectory.Trajectory;
  */
 public class Constants {
 
+  public static final class JoystickConstants{
+    public static final int kLeftStickY = 1;
+    public static final int kRightStickX = 3;
+  }
+
     public static final class DriveConstants {
         public static final int kLeftMotor1Port = 0;
         public static final int kLeftMotor2Port = 1;
@@ -44,6 +49,7 @@ public class Constants {
 
     public static final int kLeftStickY = 1;
     public static final int kRightStickX = 3;
+    public static double kWheelDiamater;
   }
 
     public static final class ElevatorConstants {
