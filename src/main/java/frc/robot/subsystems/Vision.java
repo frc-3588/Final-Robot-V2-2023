@@ -5,15 +5,12 @@ import java.util.Optional;
 import org.photonvision.EstimatedRobotPose;
 import org.photonvision.PhotonCamera;
 import org.photonvision.PhotonPoseEstimator;
-import org.photonvision.PhotonUtils;
 import org.photonvision.PhotonPoseEstimator.PoseStrategy;
 import org.photonvision.targeting.PhotonPipelineResult;
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFields;
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.util.Units;
-import frc.robot.Constants;
+import frc.robot.Constants.aprilTagAlignmentConstants;
 
 public class Vision {
     private final PhotonCamera camera;
@@ -27,7 +24,7 @@ public class Vision {
         try {
             field = AprilTagFieldLayout.loadFromResource(AprilTagFields.k2023ChargedUp.m_resourceFile);
             poseEstimator = new PhotonPoseEstimator(field, PoseStrategy.CLOSEST_TO_REFERENCE_POSE, camera,
-                Constants.robotToCam);
+                aprilTagAlignmentConstants.robotToCam);
         } catch (Exception e) {
             System.out.println("Field layout not found" + e);
         }

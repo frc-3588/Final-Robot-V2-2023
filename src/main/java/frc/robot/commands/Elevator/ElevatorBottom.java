@@ -2,16 +2,25 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.Elevator;
+
+import edu.wpi.first.math.controller.ElevatorFeedforward;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Elevator;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
-
-public class ElevatorTop extends CommandBase {
+public class ElevatorBottom extends CommandBase {
 
   private Elevator m_elevator;
-  /** Creates a new ElevatorTop. */
-  public ElevatorTop(Elevator subsystem) {
+  /** Creates a new ElevatorBottom. */
+
+  // public ElevatorBottomSetPoint(Elevator subsystem){
+
+  //   m_Elevator = subsystem;
+
+  //   addRequirements(m_Elevator);
+  // }
+  
+  public ElevatorBottom(Elevator subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_elevator = subsystem;
     addRequirements(m_elevator);
@@ -24,7 +33,9 @@ public class ElevatorTop extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_elevator.topElevator();
+    
+    m_elevator.bottomElevator();
+
   }
 
   // Called once the command ends or is interrupted.

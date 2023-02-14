@@ -2,21 +2,21 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
-
-import frc.robot.subsystems.Arm;
+package frc.robot.commands.Elevator;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Elevator;
 
-public class ArmBottom extends CommandBase {
 
-  private final Arm m_arm;
-  /** Creates a new ArmBottom. */
-  public ArmBottom(Arm subsystem) {
+public class ElevatorDescendSpeed extends CommandBase {
+  private final Elevator m_elevator;
+
+  /** Creates a new ElevatorDescendSpeed. */
+  public ElevatorDescendSpeed( Elevator subsystem) {
+    m_elevator = subsystem;
+    addRequirements(m_elevator);
+
     // Use addRequirements() here to declare subsystem dependencies.
-
-    m_arm = subsystem;
-    addRequirements(m_arm);
   }
 
   // Called when the command is initially scheduled.
@@ -26,18 +26,18 @@ public class ArmBottom extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_arm.middleArm();
+    m_elevator.setDescendSpeed();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_arm.stopArm();
+    m_elevator.stopElevator();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return m_arm.isAtSetPoint();
+    return false;
   }
 }

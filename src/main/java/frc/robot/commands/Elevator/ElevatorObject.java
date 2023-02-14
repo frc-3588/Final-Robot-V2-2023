@@ -2,21 +2,20 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.Elevator;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Elevator;
 
 
-public class ElevatorDescendSpeed extends CommandBase {
+public class ElevatorObject extends CommandBase {
   private final Elevator m_elevator;
-
-  /** Creates a new ElevatorDescendSpeed. */
-  public ElevatorDescendSpeed( Elevator subsystem) {
+  /** Creates a new ElevatorAscendSpeed. */
+  
+  public ElevatorObject(Elevator subsystem) {
+    // Use addRequirements() here to declare subsystem dependencies.
     m_elevator = subsystem;
     addRequirements(m_elevator);
-
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -26,7 +25,7 @@ public class ElevatorDescendSpeed extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_elevator.setDescendSpeed();
+    m_elevator.elevatorObject();
   }
 
   // Called once the command ends or is interrupted.

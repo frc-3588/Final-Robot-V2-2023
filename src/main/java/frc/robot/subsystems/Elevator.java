@@ -173,6 +173,13 @@ public class Elevator extends SubsystemBase {
         //is it height that is being set to ElevatorConstants.bottomPIDReference or like our actual setpoint?
     }
 
+    public void elevatorObject(){
+        rightPIDController.setReference(ElevatorConstants.objectPIDRefrence, ControlType.kPosition);
+        leftPIDController.setReference(ElevatorConstants.objectPIDRefrence, ControlType.kPosition);
+
+        setPoint = ElevatorConstants.objectPIDRefrence;
+    }
+
     public void setAscendSpeed(){
         MotorControllerGroup.set(ElevatorConstants.ascensionSpeed);
     }
