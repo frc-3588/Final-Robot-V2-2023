@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands.Elevator;
+
 import frc.robot.subsystems.Elevator;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -10,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class ElevatorTop extends CommandBase {
 
   private Elevator m_elevator;
+
   /** Creates a new ElevatorTop. */
   public ElevatorTop(Elevator subsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -19,7 +21,9 @@ public class ElevatorTop extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -30,12 +34,12 @@ public class ElevatorTop extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_elevator.stopElevator();
+    m_elevator.elevatorOff();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return m_elevator.isAtSetPoint();
+    return m_elevator.isElevatorSetpoint();
   }
 }

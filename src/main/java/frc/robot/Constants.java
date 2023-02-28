@@ -31,11 +31,21 @@ import edu.wpi.first.math.util.Units;
  * constants are needed, to reduce verbosity.
  */
 public class Constants {
+  public static final double kMotorStop = 0.0;
 
   public static final class JoystickConstants {
     public static final int kLeftStickY = 1;
     public static final int kRightStickX = 3;
     public static double kWheelDiamater;
+
+    public static final int kElevatorTopButton = 1;
+    public static final int kElevatorBottomButton = 2;
+    public static final int kArmTopButton = 3;
+    public static final int kArmBottomButton = 4;
+
+    public static final int kArmScoreTopButton = 5;
+    public static final int kArmScoreMiddleButton = 6;
+
   }
 
   public static final class DriveConstants {
@@ -45,53 +55,62 @@ public class Constants {
     public static final int kRightMotor2Port = 3;
 
     public static final double kTrackWidth = Units.inchesToMeters(27);
-    public static final double wheelDiamater = Units.inchesToMeters(6);
+    public static final double kWheelDiamater = Units.inchesToMeters(6);
+
+
+
+
   }
 
   public static final class ElevatorConstants {
+    public static final double kTopPIDReference = 50.0;
+    public static final double kBottomPIDReference = 25.0;
+    public static final double kHomePIDRefrence = 0.0;
+    public static final double kPIDTolerance = 0.001;
 
-    public static final double topPIDReference = 12.0;
-    public static final double objectPIDRefrence = 12.0d;
-    public static final double bottomPIDReference = 0.0;
-    public static final double PIDTolerance = 0.01;
+    public static final double kAscensionSpeed = 0.25;
+    public static final double kDescensionSpeed = -0.25;
+    public static final double kStopSpeed = 0.0;
 
-    public static final double ascensionSpeed = 0.25;
-    public static final double descensionSpeed = -0.25;
-    public static final double stopSpeed = 0.0;
+    public static final double kRightPIDTolerance = 0.1;
+    public static final double kLeftPIDTolerance = 0.1;
 
-    public static final double rightPIDTolerance = 0.01;
-    public static final double leftPIDTolerance = 0.01;
+    public static final double kCubeTopHeight = 3.0; // feet, take into consideration apriltags
+    public static final double kCubeMiddleHeight = 2.0;
 
-    public static final double cubeTopHeight = 3.0; // feet, take into consideration apriltags
-    public static final double cubeMiddleHeight = 2.0;
+    public static final double kConeTopHeight = 4.0;
+    public static final double kConeMiddleHeight = 3.0;
 
-    public static final double coneTopHeight = 4.0;
-    public static final double coneMiddleHeight = 3.0;
+    public static final double kFeederStationHeight = 3.0; // change according to game manuel
 
-    public static final double feederStationHeight = 3.0; // change according to game manuel
-    
+    public static final int kLeftMotor = 8;
+    public static final int kRightMotor = 7;
 
   }
 
   public static final class ArmConstants {
     // measure according to the robot, location of elevator and arm
-    public static final double middleSetPoint = 0.0;
-    public static final double topSetPoint = 0.0;
-    public static final double PIDTolerance = 0.01;
+    public static final double kMiddleSetPoint = 0.0;
+    public static final double kTopSetPoint = 0.0;
+    public static final double kPIDTolerance = 0.01;
 
-    public static final double topPIDReference = 2.0;
-    public static final double middlePIDReference = 2.0;
+    public static final double kTopPIDReference = 40.0;
+    public static final double kMiddlePIDReference = 20.0;
+    public static final double kArmHome = 0.0;
+
+    public static final double topPIDReference = 20;
+    public static final double middlePIDReference = 40;
   }
 
   public static final class AutoConstants {
 
-    public static final int kLeftMotor1Port = 0;
-    public static final int kLeftMotor2Port = 1;
-    public static final int kRightMotor1Port = 2;
-    public static final int kRightMotor2Port = 3;
+    public static final int kLeftFront = 0;
+    public static final int kLeftRear = 1;
+    public static final int kRightFront = 2;
+    public static final int kRightRear = 3;
     // TODO: UPDATE THIS TO OUR TRACK WIDTH, CODE WILL NOT WORK WITHOUT
     public static final double kTrackWidth = Units.inchesToMeters(27);
-    public static final double wheelDiamater = Units.inchesToMeters(6);
+    public static final double kWheelDiamater = Units.inchesToMeters(6);
 
     public static final DifferentialDriveKinematics m_kinematics = new DifferentialDriveKinematics(
         kTrackWidth);
@@ -99,10 +118,9 @@ public class Constants {
     public static final double kvVoltSecondsPerMeter = 0;
     public static final double kaVoltSecondsSquaredPerMeter = 0;
     public static final double kPDriveVel = 0;
-    public static double kWheelDiamater;
 
-    public static String trajectoryJSON = "paths/CrossBaseline.wpilib.json";
-    public static Trajectory trajectory = new Trajectory();
+    // public static String kTrajectoryJSON = "paths/CrossBaseline.wpilib.json";
+    // public static Trajectory kTrajectory = new Trajectory();
 
     public static final double kMaxSpeedMetersPerSecond = 0;
     public static final double kMaxAccelerationMetersPerSecondSquared = 0;
@@ -111,11 +129,11 @@ public class Constants {
   }
 
   public static final class aprilTagAlignmentConstants {
-    public static final Transform3d robotToCam = new Transform3d(
+    public static final Transform3d kRobotToCam = new Transform3d(
         new Translation3d(Units.inchesToMeters(16), 0.0, Units.inchesToMeters(4.625)),
         new Rotation3d(0, 0, 0));
-    public static final double targetHeight = Units.feetToMeters(2);
-    public static final double goalRange = Units.inchesToMeters(3);
+    public static final double kTargetHeight = Units.feetToMeters(2);
+    public static final double kGoalRange = Units.inchesToMeters(3);
   }
 
 }

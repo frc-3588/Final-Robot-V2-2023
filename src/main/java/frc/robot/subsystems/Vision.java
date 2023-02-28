@@ -24,7 +24,7 @@ public class Vision {
         try {
             field = AprilTagFieldLayout.loadFromResource(AprilTagFields.k2023ChargedUp.m_resourceFile);
             poseEstimator = new PhotonPoseEstimator(field, PoseStrategy.CLOSEST_TO_REFERENCE_POSE, camera,
-                aprilTagAlignmentConstants.robotToCam);
+                aprilTagAlignmentConstants.kRobotToCam);
         } catch (Exception e) {
             System.out.println("Field layout not found" + e);
         }

@@ -14,17 +14,15 @@ import frc.robot.subsystems.Elevator;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AquireObjectClose extends SequentialCommandGroup {
-    private final Elevator m_elevator = new Elevator();
-    private final Arm m_arm = new Arm();
 
     /** Creates a new Score. */
-    public AquireObjectClose() {
+    public AquireObjectClose(Elevator elevator, Arm arm) {
 
         // Add your commands in the addCommands() call, e.g.
         // addCommands(new FooCommand(), new BarCommand());
         addCommands(
-                new ArmHome(m_arm)
-                        .andThen(new ElevatorHome(m_elevator)));
+                new ArmHome(arm)
+                        .andThen(new ElevatorHome(elevator)));
 
         // Raise Elevator, Extend Arm, Open
     }

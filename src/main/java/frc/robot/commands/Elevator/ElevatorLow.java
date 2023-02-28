@@ -7,37 +7,48 @@ package frc.robot.commands.Elevator;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Elevator;
 
+public class ElevatorLow extends CommandBase {
 
-public class ElevatorDescendSpeed extends CommandBase {
-  private final Elevator m_elevator;
+  private Elevator m_elevator;
 
-  /** Creates a new ElevatorDescendSpeed. */
-  public ElevatorDescendSpeed( Elevator subsystem) {
+  /** Creates a new ElevatorBottom. */
+
+  // public ElevatorBottomSetPoint(Elevator subsystem){
+
+  // m_Elevator = subsystem;
+
+  // addRequirements(m_Elevator);
+  // }
+
+  public ElevatorLow(Elevator subsystem) {
+    // Use addRequirements() here to declare subsystem dependencies.
     m_elevator = subsystem;
     addRequirements(m_elevator);
-
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_elevator.setDescendSpeed();
+    m_elevator.lowElevator();
+    // m_elevator.bottomElevator();
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_elevator.stopElevator();
+    m_elevator.elevatorOff();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return m_elevator.isElevatorSetpoint();
   }
 }

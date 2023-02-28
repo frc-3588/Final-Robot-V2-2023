@@ -17,22 +17,18 @@ import frc.robot.subsystems.Pneumatics;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class ScoreTop extends SequentialCommandGroup {
-  private final Elevator m_elevator = new Elevator();
-  private final Pneumatics m_pneumatics = new Pneumatics();
-  private final Arm m_arm = new Arm();
 
   /** Creates a new ScoreTop. */
-  public ScoreTop() {
+  public ScoreTop(Elevator elevator, Arm arm, Pneumatics pneumatics) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new ElevatorTop(m_elevator)
-        .andThen(new ArmTop(m_arm)
-        .andThen(new TogglePiston(m_pneumatics)
-        .andThen(new ArmHome(m_arm)
-        .andThen(new TogglePiston(m_pneumatics)
-        .andThen(new ElevatorHome(m_elevator))
-        )))));
+        new ElevatorTop(elevator)
+            .andThen(new ArmTop(arm)
+                // .andThen(new TogglePiston(pneumatics)
+                .andThen(new ArmHome(arm)
+                    // .andThen(new TogglePiston(pneumatics)
+                    .andThen(new ElevatorHome(elevator)))));
     // topElevator, topArm, togglePiston, retract arm, lower elevator (position
     // (0,0));
   }

@@ -20,6 +20,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.estimator.DifferentialDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -28,9 +29,12 @@ import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.aprilTagAlignmentConstants;
 
 import java.util.Optional;
+
+// import org.apache.commons.lang3.builder.Diff;
 import org.photonvision.EstimatedRobotPose;
 import org.photonvision.PhotonUtils;
 
@@ -99,12 +103,12 @@ public class Chassis extends SubsystemBase {
   public Chassis() {
     kGyro.reset();
     // creating the left front and rear Controllers
-    kLeftFrontController = new CANSparkMax(1, MotorType.kBrushless);
-    kLeftRearController = new CANSparkMax(2, MotorType.kBrushless);
+    kLeftFrontController = new CANSparkMax(AutoConstants.kLeftFront, MotorType.kBrushless);
+    kLeftRearController = new CANSparkMax(AutoConstants.kLeftRear, MotorType.kBrushless);
 
     // creating the right front and rear controllers
-    kRightFrontController = new CANSparkMax(3, MotorType.kBrushless);
-    kRightRearController = new CANSparkMax(4, MotorType.kBrushless);
+    kRightFrontController = new CANSparkMax(AutoConstants.kRightFront, MotorType.kBrushless);
+    kRightRearController = new CANSparkMax(AutoConstants.kRightRear, MotorType.kBrushless);
 
     kLefMotorControllerGroup = new MotorControllerGroup(kLeftFrontController, kLeftRearController);
 
@@ -118,9 +122,9 @@ public class Chassis extends SubsystemBase {
     kRightFrontEncoder = kRightFrontController.getEncoder();
 
     kLeftFrontEncoder.setPositionConversionFactor(
-        Math.PI * Constants.DriveConstants.wheelDiamater);
+        Math.PI * Constants.DriveConstants.kWheelDiamater);
     kRightFrontEncoder.setPositionConversionFactor(
-        Math.PI * Constants.DriveConstants.wheelDiamater
+        Math.PI * Constants.DriveConstants.kWheelDiamater
 
     );
     SmartDashboard.putData("Field", fieldSim);
@@ -152,6 +156,10 @@ public class Chassis extends SubsystemBase {
 
   }
 
+  public void setTankPower(double d, double u) {
+    kDifferentialDrive.tankDrive(d, u);
+  }
+
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -160,9 +168,9 @@ public class Chassis extends SubsystemBase {
    * 
    */
   @Deprecated
-  public void setTankPower(double d, double u) {
-    kDifferentialDrive.tankDrive(d, u);
-  }
+  // public void setTankPower(double d, double u) {
+  //   kDifferentialDrive.tankDrive(d, u);
+  // }
 
   private void updateOdometry() {
     m_poseEstimator.update(
@@ -198,12 +206,12 @@ public class Chassis extends SubsystemBase {
 
     if (cameraData.hasTargets()) {
       double range = PhotonUtils.calculateDistanceToTargetMeters(
-          aprilTagAlignmentConstants.robotToCam.getZ(),
-          aprilTagAlignmentConstants.targetHeight,
-          aprilTagAlignmentConstants.robotToCam.getRotation().getY(),
+          aprilTagAlignmentConstants.kRobotToCam.getZ(),
+          aprilTagAlignmentConstants.kTargetHeight,
+          aprilTagAlignmentConstants.kRobotToCam.getRotation().getY(),
           Units.degreesToRadians(cameraData.getBestTarget().getPitch()));
 
-      forwardSpeed = -alignmentForwardController.calculate(range, aprilTagAlignmentConstants.goalRange);
+      forwardSpeed = -alignmentForwardController.calculate(range, aprilTagAlignmentConstants.kGoalRange);
       rotationSpeed = -turnController.calculate(cameraData.getBestTarget().getYaw(), 0);
       System.out.println(forwardSpeed);
       System.out.println(rotationSpeed);
@@ -220,4 +228,20 @@ public class Chassis extends SubsystemBase {
       }
     }
   }
+
+  public DifferentialDriveWheelSpeeds getWheelSpeeds(){
+    DifferentialDriveWheelSpeeds wheelSpeeds = new DifferentialDriveWheelSpeeds(kLefMotorControllerGroup.get(), kRightControllerGroup.get());
+    return wheelSpeeds;
+
+  }
+
+  //we only provide the distance travelled by the rightFront and leftFront encoders 
+  //incase any problems arise from not providing the distance travelled by all the encoders
+
+  public void resetOdometry(Pose2d initialPose) {
+    m_poseEstimator.resetPosition(kGyro.getRotation2d(), kLeftFrontEncoder.getPosition(), kRightFrontEncoder.getPosition(), initialPose);
+  
+  }
+
+
 }
