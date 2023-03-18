@@ -26,18 +26,19 @@ public class ElevatorHome extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Elevator.elevatorHome();
+    m_Elevator.setHome();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_Elevator.elevatorOff();
+  
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return m_Elevator.isElevatorSetpoint();
+    return false;
+    // m_Elevator.isElevatorSetpoint();
   }
 }

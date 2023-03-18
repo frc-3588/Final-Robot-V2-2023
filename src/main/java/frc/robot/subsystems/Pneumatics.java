@@ -48,7 +48,7 @@ public class Pneumatics extends SubsystemBase {
     */
     public Pneumatics() {
 
-        sole = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, 7, 6); 
+        sole = new DoubleSolenoid(0, PneumaticsModuleType.CTREPCM, 0, 1); 
         addChild("Sole", sole);
 
         //not needed since our code isn't that complex

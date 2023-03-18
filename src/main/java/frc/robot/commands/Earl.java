@@ -27,7 +27,7 @@ Elevator m_Elevator;
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Elevator.setElevatorPower(-1 * RobotContainer.getInstance().getOperator().getRawAxis(JoystickConstants.kLeftStickY)*.1);
+    m_Elevator.setElevatorPower(-1 * RobotContainer.getInstance().getOperator().getRawAxis(JoystickConstants.kLeftStickY));
 }
   
 

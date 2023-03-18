@@ -26,7 +26,7 @@ public class ArmHome extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Arm.armBottom();
+    m_Arm.setHome();
   }
 
   // Called once the command ends or is interrupted.

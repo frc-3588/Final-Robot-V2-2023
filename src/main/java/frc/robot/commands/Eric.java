@@ -23,7 +23,7 @@ public class Eric extends CommandBase {
       // Called every time the scheduler runs while the command is scheduled.
       @Override
       public void execute() {
-        m_Arm.setArmPower(-1 * RobotContainer.getInstance().getOperator().getRawAxis(JoystickConstants.kRightStickX)*1);
+        m_Arm.setArmPower(-1 * RobotContainer.getInstance().getOperator().getRawAxis(JoystickConstants.kRightStickX)*.75);
     }
       
     
