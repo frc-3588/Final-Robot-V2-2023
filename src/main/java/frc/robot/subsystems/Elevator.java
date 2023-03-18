@@ -12,8 +12,9 @@
 
 package frc.robot.subsystems;
 
+import frc.robot.Constants;
 import frc.robot.Constants.ElevatorConstants;
-import frc.robot.commands.*;
+// import frc.robot.commands.*;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -92,6 +93,9 @@ public class Elevator extends SubsystemBase {
         leftEncoder = leftMotor.getEncoder();
         rightEncoder = rightMotor.getEncoder();
 
+        leftEncoder.setPosition(0.0);
+        rightEncoder.setPosition(0.0);
+
         leftPIDController.setP(kP);
         leftPIDController.setI(kI);
         leftPIDController.setD(kD);
@@ -106,8 +110,8 @@ public class Elevator extends SubsystemBase {
         rightPIDController.setFF(kFF);
         rightPIDController.setOutputRange(kMinOutput, kMaxOutput);
 
-        reversedLimitSwitch = leftMotor.getReverseLimitSwitch(Type.kNormallyOpen);
-        reversedLimitSwitch.enableLimitSwitch(true);
+        // rightPIDController.setSmartMotionAllowedClosedLoopError(allowedErr, 0);
+        // leftPIDController.setSmartMotionAllowedClosedLoopError(allowedErr, 0);
 
         // rightMotor.setIdleMode(IdleMode.kBrake);
         // leftMotor.setIdleMode(IdleMode.kBrake);
@@ -130,6 +134,7 @@ public class Elevator extends SubsystemBase {
         SmartDashboard.putNumber("Elevator Min Output", kMinOutput);
 
     }
+
 
     @Override
     public void periodic() {
@@ -224,9 +229,19 @@ public class Elevator extends SubsystemBase {
     // leftPIDController.setReference(setHeight, CANSparkMax.ControlType.kPosition);
     // rightPIDController.setReference(setHeight,
     // CANSparkMax.ControlType.kPosition);
+    // leftPIDController.setReference(setHeight, CANSparkMax.ControlType.kPosition);
+    // rightPIDController.setReference(setHeight,
+    // CANSparkMax.ControlType.kPosition);
     // }
 
     // public void setElevatorHeight(double newHeight) {
+    // if (newHeight >= elevatorMaxHeight) {
+    // setElevatorRefrences(elevatorMaxHeight);
+    // } else if (newHeight >= height) {
+    // setElevatorRefrences(newHeight - height);
+    // } else {
+    // setElevatorRefrences(height - newHeight);
+    // }
     // if (newHeight >= elevatorMaxHeight) {
     // setElevatorRefrences(elevatorMaxHeight);
     // } else if (newHeight >= height) {
@@ -251,6 +266,11 @@ public class Elevator extends SubsystemBase {
         rightPIDController.setReference(ElevatorConstants.bottomPIDReference, ControlType.kPosition);
         leftPIDController.setReference(ElevatorConstants.bottomPIDReference, ControlType.kPosition);
 
+    }
+    public void lowElevator() {
+        rightPIDController.setReference(ElevatorConstants.kBottomPIDReference, ControlType.kPosition);
+        leftPIDController.setReference(ElevatorConstants.kBottomPIDReference, ControlType.kPosition);
+
         setPoint = ElevatorConstants.bottomPIDReference;
 
         // is it height that is being set to ElevatorConstants.bottomPIDReference or
@@ -261,16 +281,16 @@ public class Elevator extends SubsystemBase {
         rightPIDController.setReference(ElevatorConstants.objectPIDRefrence, ControlType.kPosition);
         leftPIDController.setReference(ElevatorConstants.objectPIDRefrence, ControlType.kPosition);
 
-        setPoint = ElevatorConstants.objectPIDRefrence;
+        setPoint = ElevatorConstants.kHomePIDRefrence;
     }
 
-    public void setAscendSpeed() {
-        motorControllerGroup.set(ElevatorConstants.ascensionSpeed);
-    }
+    // public void setAscendSpeed() {
+    //     motorControllerGroup.set(ElevatorConstants.ascensionSpeed);
+    // }
 
-    public void setDescendSpeed() {
-        motorControllerGroup.set(ElevatorConstants.descensionSpeed);
-    }
+    // public void setDescendSpeed() {
+    //     motorControllerGroup.set(ElevatorConstants.descensionSpeed);
+    // }
 
     public void stopElevator() {
         motorControllerGroup.set(ElevatorConstants.stopSpeed);
@@ -285,8 +305,8 @@ public class Elevator extends SubsystemBase {
     }
 
     public boolean isAtSetPoint() {
-        return Math.abs(setPoint - leftEncoder.getPosition()) <= ElevatorConstants.leftPIDTolerance
-                && Math.abs(setPoint - rightEncoder.getPosition()) <= ElevatorConstants.rightPIDTolerance;
+        return Math.abs(setPoint - leftEncoder.getPosition()) <= ElevatorConstants.kLeftPIDTolerance
+                && Math.abs(setPoint - rightEncoder.getPosition()) <= ElevatorConstants.kRightPIDTolerance;
     }
 
     public void setHome() {
