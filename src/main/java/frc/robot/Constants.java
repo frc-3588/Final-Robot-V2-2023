@@ -50,9 +50,9 @@ public class Constants {
 
   public static final class ElevatorConstants {
 
-    public static final double topPIDReference = 12.0;
+    public static final double topPIDReference = 10.0;
     public static final double objectPIDRefrence = 12.0d;
-    public static final double bottomPIDReference = 0.0;
+    public static final double bottomPIDReference = 4.0;
     public static final double PIDTolerance = 0.01;
 
     public static final double ascensionSpeed = 0.25;
@@ -75,8 +75,8 @@ public class Constants {
 
   public static final class ArmConstants {
     // measure according to the robot, location of elevator and arm
-    public static final double middleSetPoint = 0.0;
-    public static final double topSetPoint = 0.0;
+    public static final double middleSetPoint = 3.0;
+    public static final double topSetPoint = 6.0;
     public static final double PIDTolerance = 0.01;
 
     public static final double topPIDReference = 2.0;
@@ -89,6 +89,7 @@ public class Constants {
     public static final int kLeftMotor2Port = 1;
     public static final int kRightMotor1Port = 2;
     public static final int kRightMotor2Port = 3;
+    
     // TODO: UPDATE THIS TO OUR TRACK WIDTH, CODE WILL NOT WORK WITHOUT
     public static final double kTrackWidth = Units.inchesToMeters(27);
     public static final double wheelDiamater = Units.inchesToMeters(6);

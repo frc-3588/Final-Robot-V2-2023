@@ -89,6 +89,16 @@ Children:
         value: '0'
     Base: Joystick
     Name: Driver
+  - Children: []
+    Properties:
+      Number: !!robotbuilder.data.properties.ChoicesProperty
+        choices: ['0', '1', '2', '3', '4', '5']
+        default: 1
+        name: Number
+        validators: [Joystick]
+        value: '1'
+    Base: Xbox Controller
+    Name: Operator
   Properties: {}
   Base: OI
   Name: Operator Interface
@@ -107,10 +117,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: None}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id002 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id002
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
@@ -129,10 +139,10 @@ Children:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Requires, type: Subsystem, validators: null, value: Chassis}
       Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
-        default: &id003 []
+        default: []
         name: Parameter presets
         validators: null
-        value: *id003
+        value: []
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Command
@@ -158,10 +168,12 @@ Properties:
       Number, validators: null, value: 3588}
   Export Subsystems: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Subsystems, validators: null, value: true}
-  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Robotics\',
-    extension: null, folder: true, name: Wiring file location, validators: null, value: 'C:\Users\Robotics\'}
-  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Robotics\FRCProjects',
-    extension: null, folder: true, name: Export Directory, validators: null, value: 'C:\Users\Robotics\Documents\Programming'}
+  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Lindbergh
+      Robtics\', extension: null, folder: true, name: Wiring file location, validators: null,
+    value: 'C:\Users\Robotics\'}
+  Export Directory: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Lindbergh
+      Robtics\FRCProjects', extension: null, folder: true, name: Export Directory,
+    validators: null, value: 'C:\Users\Robotics\Documents\Programming'}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
 Base: Robot
