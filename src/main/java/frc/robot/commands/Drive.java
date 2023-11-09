@@ -55,10 +55,15 @@ public class Drive extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        //m_chassis.setTankPower(-1 * RobotContainer.getInstance().getDriver().getRawAxis(JoystickConstants.kLeftStickY)*1,
-         //RobotContainer.getInstance().getDriver().getRawAxis(JoystickConstants.kRightStickX) * 1);
-         m_chassis.arcadeDrive(-1 * RobotContainer.getInstance().getDriver().getRawAxis(JoystickConstants.kLeftStickY)*1,
-         RobotContainer.getInstance().getDriver().getRawAxis(JoystickConstants.kRightStickX) * 1);
+        double rightPower = RobotContainer.getInstance().getDriver().getRawAxis(JoystickConstants.kRightStickY)* 0.8;
+        double leftPower = RobotContainer.getInstance().getDriver().getRawAxis(JoystickConstants.kLeftStickY) * 0.8;
+
+        rightPower = Math.pow(rightPower, 1);
+        leftPower = Math.pow(leftPower, 1);
+
+        m_chassis.tankDrive(leftPower, rightPower);
+
+
     }
 
     // Called once the command ends or is interrupted.

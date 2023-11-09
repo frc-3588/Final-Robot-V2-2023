@@ -55,14 +55,14 @@ public class Robot extends TimedRobot {
         // and put our
         // autonomous chooser on the dashboard.
         m_robotContainer = RobotContainer.getInstance();
-        HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
-        try {
-            Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
-            trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
-        } catch (IOException ex) {
-            DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON,
-                    ex.getStackTrace());
-        }
+        // HAL.report(tResourceType.kResourceType_Framework, tInstances.kFramework_RobotBuilder);
+        // try {
+        //     Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
+        //     trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+        // } catch (IOException ex) {
+        //     DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON,
+        //             ex.getStackTrace());
+        // }
     }
 
     /**
@@ -102,15 +102,15 @@ public class Robot extends TimedRobot {
      * This autonomous runs the autonomous command selected by your
      * {@link RobotContainer} class.
      */
-    // @Override
-    // public void autonomousInit() {
-    // m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    @Override
+    public void autonomousInit() {
+        m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
-    // // schedule the autonomous command (example)
-    // if (m_autonomousCommand != null) {
-    // m_autonomousCommand.schedule();
-    // }
-    // }
+        // schedule the autonomous command (example)
+        if (m_autonomousCommand != null) {
+            m_autonomousCommand.schedule();
+        }
+    }
 
     /**
      * This function is called periodically during autonomous.

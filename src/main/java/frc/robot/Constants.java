@@ -35,7 +35,7 @@ public class Constants {
 
   public static final class JoystickConstants {
     public static final int kLeftStickY = 1;
-    public static final int kRightStickX = 3;
+    public static final int kRightStickY = 3;
     public static double kWheelDiamater;
 
     public static final int kElevatorTopButton = 1;
@@ -49,10 +49,10 @@ public class Constants {
   }
 
   public static final class DriveConstants {
-    public static final int kLeftMotor1Port = 0;
-    public static final int kLeftMotor2Port = 1;
-    public static final int kRightMotor1Port = 2;
-    public static final int kRightMotor2Port = 3;
+    public static final int kLeftMotor1Port = 10;
+    public static final int kLeftMotor2Port = 8;
+    public static final int kRightMotor1Port = 7;
+    public static final int kRightMotor2Port = 6;
 
     public static final double kTrackWidth = Units.inchesToMeters(27);
     public static final double kWheelDiamater = Units.inchesToMeters(6);
@@ -63,42 +63,43 @@ public class Constants {
   }
 
   public static final class ElevatorConstants {
-    public static final double kTopPIDReference = 50.0;
-    public static final double kBottomPIDReference = 25.0;
-    public static final double kHomePIDRefrence = 0.0;
-    public static final double kPIDTolerance = 0.001;
+    // public static final double kTopPIDReference = 50.0;
+    // public static final double kBottomPIDReference = 25.0;
+    // public static final double kHomePIDRefrence = 0.0;
+    // public static final double kPIDTolerance = 0.001;
 
-    public static final double topPIDReference = 12.0;
-    public static final double objectPIDRefrence = 12.0d;
-    public static final double bottomPIDReference = 0.0;
-    public static final double PIDTolerance = 0.01;
+    // public static final double topPIDReference = 12.0;
+    // public static final double objectPIDRefrence = 12.0d;
+    // public static final double bottomPIDReference = 0.0;
+    // public static final double PIDTolerance = 0.01;
 
-    public static final double kRightPIDTolerance = 0.1;
-    public static final double kLeftPIDTolerance = 0.1;
+    // public static final double kRightPIDTolerance = 0.1;
+    // public static final double kLeftPIDTolerance = 0.1;
 
-    public static final double kCubeTopHeight = 3.0; // feet, take into consideration apriltags
-    public static final double kCubeMiddleHeight = 2.0;
+    // public static final double kCubeTopHeight = 3.0; 
+    // public static final double kCubeMiddleHeight = 2.0;
 
-    public static final double kConeTopHeight = 4.0;
-    public static final double kConeMiddleHeight = 3.0;
+    // public static final double kConeTopHeight = 4.0;
+    // public static final double kConeMiddleHeight = 3.0;
 
-    public static final double kFeederStationHeight = 3.0; // change according to game manuel
+    public static final double kFeederStationHeight = 3.0; 
 
     public static final int kLeftMotor = 8;
     public static final int kRightMotor = 7;
 
-    public static final double stopSpeed = 0.0;
+    // public static final double stopSpeed = 0.0;
+    // public static double descensionSpeed;
+    // public static double ascensionSpeed;
 
   }
 
   public static final class ArmConstants {
-    // measure according to the robot, location of elevator and arm
-    public static final double middleSetPoint = 0.0;
-    public static final double topSetPoint = 0.0;
+ 
     public static final double PIDTolerance = 0.01;
-
-    public static final double topPIDReference = 20;
-    public static final double middlePIDReference = 40;
+    
+    public static final double middlePIDReference = 55.0;
+    public static final double topPIDReference = 35.0;
+    public static final double setHome = 0.0;
   }
 
   public static final class AutoConstants {
@@ -107,6 +108,7 @@ public class Constants {
     public static final int kLeftMotor2Port = 1;
     public static final int kRightMotor1Port = 2;
     public static final int kRightMotor2Port = 3;
+
     // TODO: UPDATE THIS TO OUR TRACK WIDTH, CODE WILL NOT WORK WITHOUT
     public static final double kTrackWidth = Units.inchesToMeters(27);
     public static final double kWheelDiamater = Units.inchesToMeters(6);

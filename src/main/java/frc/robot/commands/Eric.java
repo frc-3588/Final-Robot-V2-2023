@@ -17,13 +17,13 @@ public class Eric extends CommandBase {
       // Called when the command is initially scheduled.
       @Override
       public void initialize() {
-        m_Arm.setHome();
+        // m_Arm.setHome();
       }
     
       // Called every time the scheduler runs while the command is scheduled.
       @Override
       public void execute() {
-        m_Arm.setArmPower(-1 * RobotContainer.getInstance().getOperator().getRawAxis(JoystickConstants.kRightStickX)*.75);
+        m_Arm.setArmPower(-1 * RobotContainer.getInstance().getOperator().getRawAxis(JoystickConstants.kRightStickY)*.75);
     }
       
     

@@ -5,6 +5,7 @@
 package frc.robot.commands.Arm;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants.ArmConstants;
 import frc.robot.subsystems.Arm;
 
 public class ArmHome extends CommandBase {
@@ -38,6 +39,6 @@ public class ArmHome extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return m_Arm.isAtSetPoint(ArmConstants.setHome); 
   }
 }

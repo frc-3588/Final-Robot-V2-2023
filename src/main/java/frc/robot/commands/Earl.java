@@ -21,13 +21,34 @@ Elevator m_Elevator;
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_Elevator.setHome();
+    // m_Elevator.setHome();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Elevator.setElevatorPower(-1 * RobotContainer.getInstance().getOperator().getRawAxis(JoystickConstants.kLeftStickY));
+    // m_Elevator.setElevatorPower(-1 * RobotContainer.getInstance().getOperator().getRawAxis(JoystickConstants.kLeftStickY)*.5);
+    
+    // double Joystick = -1 * RobotContainer.getInstance().getOperator().getRawAxis(JoystickConstants.kLeftStickY)*.4;
+
+    double Joystick = 0;
+
+    if(RobotContainer.getInstance().getOperator().getRawAxis(JoystickConstants.kLeftStickY) < 0){
+      Joystick = -1 * RobotContainer.getInstance().getOperator().getRawAxis(JoystickConstants.kLeftStickY)*.45;
+
+    }
+    else{
+      Joystick = -1 * RobotContainer.getInstance().getOperator().getRawAxis(JoystickConstants.kLeftStickY)*.1;
+    }
+    
+    if(Math.abs(Joystick) > .05)
+    {
+      m_Elevator.setElevatorPower(Joystick);
+    }
+    else
+    {
+      m_Elevator.setElevatorPower(.05);
+    }
 }
   
 
